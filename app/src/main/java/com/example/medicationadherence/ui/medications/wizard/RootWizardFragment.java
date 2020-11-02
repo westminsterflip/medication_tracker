@@ -59,6 +59,7 @@ public class RootWizardFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         model = new ViewModelProvider(this).get(RootWizardViewModel.class);
+        model.setsMedID(RootWizardFragmentArgs.fromBundle(Objects.requireNonNull(getArguments())).getMedicationID());
         final Observer<ArrayList<Integer>> destObserver = new Observer<ArrayList<Integer>>() {
             @Override
             public void onChanged(ArrayList<Integer> integers) {
@@ -82,7 +83,7 @@ public class RootWizardFragment extends Fragment {
         destinations = model.getDestinations().getValue();
         mainModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
         model.setContext(getContext());
-        model.setsMedID(RootWizardFragmentArgs.fromBundle(Objects.requireNonNull(getArguments())).getMedicationID());
+
         if (model.getModel() == null)
             medModel = model.setModel(new ViewModelProvider((MedicationFragment) Objects.requireNonNull(RootWizardFragmentArgs.fromBundle(Objects.requireNonNull(getArguments())).getMedFragmentInst()).get(0)).get(MedicationViewModel.class));
         else

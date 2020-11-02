@@ -69,11 +69,11 @@ public class WizardDoctorDetailFragment extends Fragment implements RootWizardFr
         }
         mainModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
         doctorList = mainModel.getRepository().getDoctors();
-        if(fromWiz && model.getsMedID() != -1) {
-            Objects.requireNonNull(model.getDestinations().getValue()).add(R.id.editScheduleFragment);
-            model.getDestinations().getValue().add(R.id.editScheduleCardFragment);
-            model.getDestinations().postValue(model.getDestinations().getValue());
-        }
+//        if(fromWiz && model.getsMedID() != -1) {
+//            Objects.requireNonNull(model.getDestinations().getValue()).add(R.id.editScheduleFragment);
+//            model.getDestinations().getValue().add(R.id.editScheduleCardFragment);
+//            model.getDestinations().postValue(model.getDestinations().getValue());
+//        }
     }
 
     @Override

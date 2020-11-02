@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 
 import androidx.core.os.ConfigurationCompat;
 import androidx.lifecycle.MutableLiveData;
@@ -240,8 +239,11 @@ public class RootWizardViewModel extends ViewModel {
             destinations = new MutableLiveData<>();
             Integer[] destsint = {R.id.wizardMedicineDetailFragment, R.id.wizardImageSelector, R.id.wizardDoctorDetailFragment};
             ArrayList dests = new ArrayList<>(Arrays.asList(destsint));
+            //if the medication already exists and is being edited
+            if(getsMedID() != -1){
+                dests.add(R.id.editScheduleCardFragment);
+            }
             destinations.setValue(dests);
-            Log.println(Log.ERROR, "TEST", "getsMedID: " + getsMedID());
         }
         return destinations;
     }

@@ -2,7 +2,7 @@
 
 ## Running the Application
 
-1. Get the repository using `git clone https://github.com/westminsterflip/cs1980_proj`
+1. Get the repository using `git clone https://github.com/westminsterflip/medication_tracker`
 
 2. Open Android Studio (available at https://developer.android.com/studio/)
 

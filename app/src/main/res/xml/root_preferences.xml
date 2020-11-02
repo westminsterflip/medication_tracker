@@ -1,0 +1,55 @@
+<!--
+  ~ Copyright 2018 The app Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="App Settings">
+
+        <!--Time after which to consider medication late-->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="useWideImages"
+            android:title="Use larger images"
+            android:summary="Use larger images on medication cards (may cause visual inconsistencies)"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="enableDMOverride"
+            android:title="Override system theme"
+            android:summary="Manually set dark/light mode for this app"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="darkModeEnable"
+            android:title="Enable dark mode"
+            android:dependency="enableDMOverride"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Data Settings">
+
+        <Preference
+            android:key="deleteData"
+            android:title="@string/data_delete_title"
+            android:summary="@string/data_delete_summary" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="enableCaching"
+            android:title="Enable image caching"
+            android:summary="Decreases data usage/loading times for images but increases disk usage"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

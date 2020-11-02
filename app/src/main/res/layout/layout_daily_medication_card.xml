@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dailyCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/medImage"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_marginStart="5dp"
+                android:background="@color/colorAccent"
+                android:tint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewDosageTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewMedName"
+                app:srcCompat="@drawable/ic_pill"
+                android:contentDescription="@string/image_of_medication" />
+
+            <TextView
+                android:id="@+id/textViewMedName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintStart_toEndOf="@+id/medImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewDoctorName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textViewMedName"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMedName" />
+
+            <TextView
+                android:id="@+id/textViewMedDosage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textViewDoctorName"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDoctorName" />
+
+            <TextView
+                android:id="@+id/textViewDosageTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textViewMedDosage"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMedDosage" />
+
+            <ImageButton
+                android:id="@+id/dailyMedicationExpand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/radioGroup3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_expand_more_24px"
+                android:contentDescription="@string/expand_card" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/medImage"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDosageTime">
+
+                <RadioButton
+                    android:id="@+id/dailyMedMissed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="5dp"
+                    android:text="@string/missed"
+                    tools:ignore="RtlSymmetry" />
+
+                <RadioButton
+                    android:id="@+id/dailyMedTaken"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/taken" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/dailyInstructions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textViewDosageTime"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

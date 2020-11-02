@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="summarySpinnerItems">
+        <item>"Day"</item>
+        <item>"Week"</item>
+        <item>"Month"</item>
+        <item>"Overall"</item>
+        <!--TODO: year?-->
+    </string-array>
+
+    <string-array name="medDosageUnits">
+        <item>mg</item>
+        <item>mL</item>
+        <!--TODO: add other units if needed-->
+    </string-array>
+
+    <string-array name="doctorChooserItems">
+        <item>Leave blank</item>
+        <item>Add new…</item>
+    </string-array>
+
+    <string-array name="lateTimes">
+        <item>0hrs</item>
+        <item>1hr</item>
+        <item>2hrs</item>
+        <item>3hrs</item>
+    </string-array>
+</resources>

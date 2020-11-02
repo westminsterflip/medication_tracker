@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/dailyMedListFragment2"
+            android:icon="@drawable/ic_home_24px"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_calendar_month"
+            android:title="@string/menu_calendar"/>
+        <item
+            android:id="@+id/nav_summary"
+            android:icon="@drawable/ic_donut_large_24px"
+            android:title="@string/menu_summary" />
+        <item
+            android:id="@+id/nav_medications"
+            android:icon="@drawable/ic_pill"
+            android:title="@string/menu_medication" />
+        <item
+            android:id="@+id/wizardDoctorDetailFragment2"
+            android:title="@string/menu_doctor"
+            android:icon="@drawable/ic_local_hospital_24px"/>
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/menu_settings" />
+    </group>
+</menu>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/wizardMedicineDetailFragment">
+    <fragment
+        android:id="@+id/wizardMedicineDetailFragment"
+        android:name="com.example.medicationadherence.ui.medications.wizard.WizardMedicineDetailFragment"
+        android:label="fragment_wizard_medicine_detail"
+        tools:layout="@layout/fragment_wizard_medicine_detail" >
+        <action
+            android:id="@+id/action_wizardMedicineDetailFragment_to_wizardImageSelector"
+            app:destination="@id/wizardImageSelector" />
+    </fragment>
+    <fragment
+        android:id="@+id/wizardDoctorDetailFragment"
+        android:name="com.example.medicationadherence.ui.medications.wizard.WizardDoctorDetailFragment"
+        android:label="fragment_wizard_doctor_detail"
+        tools:layout="@layout/fragment_wizard_doctor_detail" >
+        <action
+            android:id="@+id/action_wizardDoctorDetailFragment_to_editScheduleFragment2"
+            app:destination="@id/editScheduleFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/editScheduleCardFragment2"
+        android:name="com.example.medicationadherence.ui.medications.wizard.EditScheduleCardFragment"
+        android:label="fragment_edit_schedule_card"
+        tools:layout="@layout/fragment_edit_schedule_card" >
+        <action
+            android:id="@+id/action_editScheduleCardFragment2_to_editScheduleFragment2"
+            app:destination="@id/editScheduleFragment2" />
+        <argument
+            android:name="days"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/editScheduleFragment2"
+        android:name="com.example.medicationadherence.ui.medications.wizard.EditScheduleFragment"
+        android:label="fragment_edit_schedule"
+        tools:layout="@layout/fragment_edit_schedule" >
+        <action
+            android:id="@+id/action_editScheduleFragment2_to_editScheduleCardFragment2"
+            app:destination="@id/editScheduleCardFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/wizardImageSelector"
+        android:name="com.example.medicationadherence.ui.medications.wizard.WizardImageSelector"
+        android:label="fragment_wizard_image_selector"
+        tools:layout="@layout/fragment_wizard_image_selector" >
+        <action
+            android:id="@+id/action_wizardImageSelector_to_wizardDoctorDetailFragment"
+            app:destination="@id/wizardDoctorDetailFragment" />
+    </fragment>
+</navigation>

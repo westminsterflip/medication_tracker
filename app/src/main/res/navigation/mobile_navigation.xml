@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/dailyMedListFragment2">
+
+    <fragment
+        android:id="@+id/dailyMedListFragment2"
+        android:name="com.example.medicationadherence.ui.home.DailyMedListFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_daily_med_list">
+        <argument
+            android:name="timeToView"
+            android:defaultValue="0L"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.medicationadherence.ui.home.HomeFragment"
+        android:label="@string/menu_calendar"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_dailyMedListFragment"
+            app:destination="@id/dailyMedListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_summary"
+        android:name="com.example.medicationadherence.ui.summary.SummaryFragment"
+        android:label="Summary"
+        tools:layout="@layout/fragment_summary" />
+    <fragment
+        android:id="@+id/nav_medications"
+        android:name="com.example.medicationadherence.ui.medications.MedicationFragment"
+        android:label="Medications"
+        tools:layout="@layout/fragment_medication">
+        <action
+            android:id="@+id/action_nav_medications_to_rootWizardFragment"
+            app:destination="@id/rootWizardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.medicationadherence.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/dailyMedListFragment"
+        android:name="com.example.medicationadherence.ui.home.DailyMedListFragment"
+        android:label="@string/title_activity_daily_medication_list"
+        tools:layout="@layout/fragment_daily_med_list" >
+        <argument
+            android:name="timeToView"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
+    <fragment
+        android:id="@+id/rootWizardFragment"
+        android:name="com.example.medicationadherence.ui.medications.wizard.RootWizardFragment"
+        android:label="Add Medication">
+        <argument
+            android:name="medFragmentInst"
+            app:argType="java.util.ArrayList"
+            app:nullable="true" />
+        <argument
+            android:name="medicationID"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+    <fragment
+        android:id="@+id/wizardDoctorDetailFragment2"
+        android:name="com.example.medicationadherence.ui.medications.wizard.WizardDoctorDetailFragment"
+        android:label="fragment_wizard_doctor_detail"
+        tools:layout="@layout/fragment_wizard_doctor_detail" />
+</navigation>

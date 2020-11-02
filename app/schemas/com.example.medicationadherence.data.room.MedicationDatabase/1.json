@@ -1,0 +1,290 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "9c61c55efe61a6e025e26c585effc335",
+    "entities": [
+      {
+        "tableName": "Medication",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medicationID` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `status` INTEGER NOT NULL, `doctorID` INTEGER, `dosage` TEXT, `startDate` INTEGER NOT NULL, `endDate` INTEGER NOT NULL, `containerVolume` INTEGER NOT NULL, `cost` REAL NOT NULL, FOREIGN KEY(`doctorID`) REFERENCES `Doctor`(`doctorID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "medicationID",
+            "columnName": "medicationID",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "doctorID",
+            "columnName": "doctorID",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dosage",
+            "columnName": "dosage",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "startDate",
+            "columnName": "startDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endDate",
+            "columnName": "endDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "containerVolume",
+            "columnName": "containerVolume",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cost",
+            "columnName": "cost",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "medicationID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Medication_doctorID",
+            "unique": false,
+            "columnNames": [
+              "doctorID"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Medication_doctorID` ON `${TABLE_NAME}` (`doctorID`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Doctor",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "doctorID"
+            ],
+            "referencedColumns": [
+              "doctorID"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Instructions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medicationID` INTEGER NOT NULL, `instructions` TEXT NOT NULL, PRIMARY KEY(`medicationID`, `instructions`), FOREIGN KEY(`medicationID`) REFERENCES `Medication`(`medicationID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "medicationID",
+            "columnName": "medicationID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "instructions",
+            "columnName": "instructions",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "medicationID",
+            "instructions"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Medication",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "medicationID"
+            ],
+            "referencedColumns": [
+              "medicationID"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Schedule",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medicationID` INTEGER NOT NULL, `numDoses` INTEGER NOT NULL, `time` INTEGER NOT NULL, `weekdays` INTEGER NOT NULL, PRIMARY KEY(`medicationID`, `time`, `weekdays`), FOREIGN KEY(`medicationID`) REFERENCES `Medication`(`medicationID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "medicationID",
+            "columnName": "medicationID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numDoses",
+            "columnName": "numDoses",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weekdays",
+            "columnName": "weekdays",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "medicationID",
+            "time",
+            "weekdays"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Medication",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "medicationID"
+            ],
+            "referencedColumns": [
+              "medicationID"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "MedicationLog",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`medicationID` INTEGER NOT NULL, `date` INTEGER NOT NULL, `taken` INTEGER NOT NULL, `timeLate` INTEGER NOT NULL, PRIMARY KEY(`medicationID`, `date`, `timeLate`), FOREIGN KEY(`medicationID`) REFERENCES `Medication`(`medicationID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "medicationID",
+            "columnName": "medicationID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taken",
+            "columnName": "taken",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeLate",
+            "columnName": "timeLate",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "medicationID",
+            "date",
+            "timeLate"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Medication",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "medicationID"
+            ],
+            "referencedColumns": [
+              "medicationID"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Doctor",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`doctorID` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `practiceName` TEXT, `address` TEXT, `phone` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "doctorID",
+            "columnName": "doctorID",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "practiceName",
+            "columnName": "practiceName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "phone",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "doctorID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9c61c55efe61a6e025e26c585effc335')"
+    ]
+  }
+}

@@ -414,4 +414,11 @@ public class EditScheduleCardFragment extends Fragment implements RootWizardFrag
         NotificationCompat.Builder nb = nh.getChannel1Notification(title, message);
         nh.getManager().notify(1, nb.build());
     }
+
+    @Override
+    public void prepareBack() {
+        wizardModel.getSchedules().addAll(wizardModel.getRemoved());
+        wizardModel.setDoseNull();
+        wizardModel.setScheduleFDNull();
+    }
 }

@@ -111,6 +111,11 @@ public class WizardImageSelector extends Fragment implements RootWizardFragment.
     }
 
     @Override
+    public void prepareBack() {
+
+    }
+
+    @Override
     public void pause() {
 
     }

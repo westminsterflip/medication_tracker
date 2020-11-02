@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 
 import androidx.core.os.ConfigurationCompat;
 import androidx.lifecycle.MutableLiveData;
@@ -231,6 +232,8 @@ public class RootWizardViewModel extends ViewModel {
         this.doctorID = doctorID;
     }
 
+    //This shouldn't be called from the Doctor fragment unless it's in the wizard
+    //So if this is called, assume in wizard.
     @SuppressWarnings("unchecked")
     MutableLiveData<ArrayList<Integer>> getDestinations() {
         if(destinations == null){
@@ -238,6 +241,7 @@ public class RootWizardViewModel extends ViewModel {
             Integer[] destsint = {R.id.wizardMedicineDetailFragment, R.id.wizardImageSelector, R.id.wizardDoctorDetailFragment};
             ArrayList dests = new ArrayList<>(Arrays.asList(destsint));
             destinations.setValue(dests);
+            Log.println(Log.ERROR, "TEST", "getsMedID: " + getsMedID());
         }
         return destinations;
     }

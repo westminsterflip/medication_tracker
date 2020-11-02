@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
+//TODO: should never have hard coded R.id.* values in this class
 public class RootWizardFragment extends Fragment {
     private ArrayList<Integer> destinations;
     private RootWizardViewModel model;
@@ -60,6 +62,7 @@ public class RootWizardFragment extends Fragment {
         final Observer<ArrayList<Integer>> destObserver = new Observer<ArrayList<Integer>>() {
             @Override
             public void onChanged(ArrayList<Integer> integers) {
+                Log.println(Log.ERROR,"TEST","CALLED OBSERVER");
                 if (model.getListLength() != integers.size()) {
                     if (innerNavController != null) {
                         if (Objects.requireNonNull(innerNavController.getCurrentDestination()).getId() == destinations.get(0))
@@ -121,11 +124,12 @@ public class RootWizardFragment extends Fragment {
                 if (currentLoc == destinations.get(0)){
                     Navigation.findNavController(root).navigateUp();
                 } else {
-                    if(currentLoc == R.id.editScheduleCardFragment2) {
-                        model.getSchedules().addAll(model.getRemoved());
-                        model.setDoseNull();
-                        model.setScheduleFDNull();
-                    }
+//                    if(currentLoc == R.id.editScheduleCardFragment) {
+//                        model.getSchedules().addAll(model.getRemoved());
+//                        model.setDoseNull();
+//                        model.setScheduleFDNull();
+//                    }
+                    model.getThisList().get(Objects.requireNonNull(model.getDestinations().getValue()).indexOf(currentLoc)).prepareBack();
                     innerNavController.navigateUp();
                     if (innerNavController.getCurrentDestination().getId() == destinations.get(0)){
                         setHasLast(false);
@@ -234,12 +238,12 @@ public class RootWizardFragment extends Fragment {
                                 setHasLast(true);
                             }
                         }
-                    } else if(currentLoc == R.id.editScheduleCardFragment2){
-                        model.getThisList().get(model.getDestinations().getValue().indexOf(R.id.editScheduleCardFragment2)).pause();
+                    } else if(currentLoc == R.id.editScheduleCardFragment){
+                        model.getThisList().get(model.getDestinations().getValue().indexOf(R.id.editScheduleCardFragment)).pause();
                         model.setScheduleTimeAdapter(null);
                         model.setScheduleFDNull();
                         innerNavController.navigateUp();
-                    } else if (currentLoc == R.id.editScheduleFragment2){
+                    } else if (currentLoc == R.id.editScheduleFragment){
                         scheduled = true;
                         model.getThisList().get(model.getThisList().size()-1).pause();
                         addMedGoUp(v);
@@ -275,6 +279,7 @@ public class RootWizardFragment extends Fragment {
         void showErrors();
         void pause();
         boolean isExitable();
+        void prepareBack();
     }
 
     @Override

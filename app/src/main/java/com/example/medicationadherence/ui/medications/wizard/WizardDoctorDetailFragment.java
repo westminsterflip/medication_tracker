@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,11 @@ public class WizardDoctorDetailFragment extends Fragment implements RootWizardFr
         }
         mainModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
         doctorList = mainModel.getRepository().getDoctors();
+        if(fromWiz && model.getsMedID() != -1) {
+            Objects.requireNonNull(model.getDestinations().getValue()).add(R.id.editScheduleFragment);
+            model.getDestinations().getValue().add(R.id.editScheduleCardFragment);
+            model.getDestinations().postValue(model.getDestinations().getValue());
+        }
     }
 
     @Override
@@ -162,20 +168,22 @@ public class WizardDoctorDetailFragment extends Fragment implements RootWizardFr
             public void afterTextChanged(Editable s) {
             }
         });
-        scheduleAfter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    Objects.requireNonNull(model.getDestinations().getValue()).add(R.id.editScheduleFragment2);
-                    model.getDestinations().getValue().add(R.id.editScheduleCardFragment2);
-                } else {
-                    Objects.requireNonNull(model.getDestinations().getValue()).remove((Integer)R.id.editScheduleFragment2);
-                    model.getDestinations().getValue().remove((Integer)R.id.editScheduleCardFragment2);
+        if (fromWiz && model.getsMedID() == -1) {
+            scheduleAfter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Log.println(Log.ERROR, "TEST", "CHANGED CHECKBOX");
+                    if (isChecked) {
+                        Objects.requireNonNull(model.getDestinations().getValue()).add(R.id.editScheduleFragment);
+                        model.getDestinations().getValue().add(R.id.editScheduleCardFragment);
+                    } else {
+                        Objects.requireNonNull(model.getDestinations().getValue()).remove((Integer) R.id.editScheduleFragment);
+                        model.getDestinations().getValue().remove((Integer) R.id.editScheduleCardFragment);
+                    }
+                    model.getDestinations().postValue(model.getDestinations().getValue());
                 }
-                model.getDestinations().postValue(model.getDestinations().getValue());
-            }
-        });
-        if (!fromWiz) {
+            });
+        } else if (!fromWiz) {
             scheduleAfter.setVisibility(View.GONE);
             update.setVisibility(View.VISIBLE);
             update.setOnClickListener(new View.OnClickListener() {
@@ -233,8 +241,7 @@ public class WizardDoctorDetailFragment extends Fragment implements RootWizardFr
                 update.setEnabled(false);
                 remove.setEnabled(false);
             }
-        }
-        if(fromWiz && model.getsMedID() != -1){
+        }else if(fromWiz && model.getsMedID() != -1){
             model.setScheduleAfter(true);
             scheduleAfter.setVisibility(View.GONE);
             int i;
@@ -309,5 +316,10 @@ public class WizardDoctorDetailFragment extends Fragment implements RootWizardFr
             names.add(d.getName());
         }
         return names;
+    }
+
+    @Override
+    public void prepareBack() {
+
     }
 }

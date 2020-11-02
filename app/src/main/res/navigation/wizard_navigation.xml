@@ -19,28 +19,28 @@
         tools:layout="@layout/fragment_wizard_doctor_detail" >
         <action
             android:id="@+id/action_wizardDoctorDetailFragment_to_editScheduleFragment2"
-            app:destination="@id/editScheduleFragment2" />
+            app:destination="@id/editScheduleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/editScheduleCardFragment2"
+        android:id="@+id/editScheduleCardFragment"
         android:name="com.example.medicationadherence.ui.medications.wizard.EditScheduleCardFragment"
         android:label="fragment_edit_schedule_card"
         tools:layout="@layout/fragment_edit_schedule_card" >
         <action
             android:id="@+id/action_editScheduleCardFragment2_to_editScheduleFragment2"
-            app:destination="@id/editScheduleFragment2" />
+            app:destination="@id/editScheduleFragment" />
         <argument
             android:name="days"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/editScheduleFragment2"
+        android:id="@+id/editScheduleFragment"
         android:name="com.example.medicationadherence.ui.medications.wizard.EditScheduleFragment"
         android:label="fragment_edit_schedule"
         tools:layout="@layout/fragment_edit_schedule" >
         <action
             android:id="@+id/action_editScheduleFragment2_to_editScheduleCardFragment2"
-            app:destination="@id/editScheduleCardFragment2" />
+            app:destination="@id/editScheduleCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/wizardImageSelector"

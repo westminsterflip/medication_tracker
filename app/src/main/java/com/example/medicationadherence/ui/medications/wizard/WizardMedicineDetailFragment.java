@@ -490,4 +490,9 @@ public class WizardMedicineDetailFragment extends Fragment implements RootWizard
     public boolean isExitable() {
         return exitable;
     }
+
+    @Override
+    public void prepareBack() {
+
+    }
 }

@@ -128,4 +128,9 @@ public class EditScheduleFragment extends Fragment implements RootWizardFragment
             trashIcon.draw(c);
         }
     }
+
+    @Override
+    public void prepareBack() {
+
+    }
 }

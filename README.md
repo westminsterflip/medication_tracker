@@ -1,4 +1,4 @@
-# CS1980 Project: Medication Adherence
+# Android Medication Tracker
 
 ## Running the Application
 
